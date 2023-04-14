@@ -3,6 +3,8 @@ package com.ms4.register.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,19 +25,42 @@ public class SecurityConfig {
   
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	 http
-	 .csrf()
-	 .disable()
-	 .authorizeRequests()
-	 .antMatchers("/api/v*/authentication/**")
-	 .permitAll()
-	 .anyRequest().authenticated()
-	 .and()
-	 .formLogin();
-	return http.build();
+http.csrf()
+.disable()
+.authorizeRequests((request)->{
+	try {
+		request.antMatchers("/api/v*/authentication/**")
+		.permitAll()
+		.anyRequest().authenticated()
+		.and()
+		.formLogin();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+})
+.authenticationProvider(authenticationProvider())
+;
+
+
+return http.build();
+
+	
 	 
   }
-
+@Bean
+public AuthenticationProvider authenticationProvider() {
+	
+	DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+	authenticationProvider.setUserDetailsService(userService);
+	authenticationProvider.setPasswordEncoder(passwordEncoder());
+	return authenticationProvider;
+	
+}
+@Bean
+public PasswordEncoder passwordEncoder() {
+  return new BCryptPasswordEncoder();
+}
 //  @Override
 //  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //    auth.userDetailsService(userService)
@@ -53,8 +78,5 @@ public class SecurityConfig {
 //        .formLogin();
 //  }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+
 }
