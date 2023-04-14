@@ -109,6 +109,6 @@ public class RegistrationService {
 
     savedToken.setValidatedAt(LocalDateTime.now());
     tokenRepository.save(savedToken);
-    return "<h1>Your account hase been successfully activated</h1>";
+    return "<h1>Your account has been successfully activated</h1>";
   }
 }
