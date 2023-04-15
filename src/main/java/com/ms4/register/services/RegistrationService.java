@@ -76,6 +76,10 @@ public class RegistrationService {
   }
 
   public String confirm(String token) {
+
+	  
+
+	  
     // get the token
     Token savedToken = tokenRepository.findByToken(token)
         .orElseThrow(() -> new IllegalStateException("Token not found"));
@@ -111,4 +115,12 @@ public class RegistrationService {
     tokenRepository.save(savedToken);
     return "<h1>Your account has been successfully activated</h1>";
   }
+
+  public String generateNewVerificationToken(String oldToken) {
+	return null;}
+  public void createPasswordResetTokenForUser(ApplicationUser user, String token) {
+	}
+  
 }
+
+
