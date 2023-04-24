@@ -1,4 +1,4 @@
-package com.ms4.register.models;
+package com.register.models;
 
 public enum UserRole {
 

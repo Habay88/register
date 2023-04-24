@@ -1,14 +1,14 @@
-package com.ms4.register.services;
+package com.register.services;
 
-import com.ms4.register.dto.RegistrationDto;
-import com.ms4.register.models.ApplicationUser;
-import com.ms4.register.models.Token;
-import com.ms4.register.models.UserRole;
-import com.ms4.register.repositories.TokenRepository;
-import com.ms4.register.repositories.UserRepository;
+import com.register.dto.RegistrationDto;
+import com.register.models.ApplicationUser;
+import com.register.models.Token;
+import com.register.models.UserRole;
+import com.register.repositories.TokenRepository;
+import com.register.repositories.UserRepository;
 
-import jakarta.mail.MessagingException;
-import jakarta.transaction.Transactional;
+import javax.mail.MessagingException;
+import javax.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class RegistrationService {
   private final PasswordEncoder passwordEncoder;
   private final EmailService emailService;
 
-  @Transactional
+  @javax.transaction.Transactional
   public String register(RegistrationDto registrationDto) {
     // check if the user already exists
     boolean userExists = repository.findByEmail(registrationDto.getEmail()).isPresent();
@@ -68,7 +68,7 @@ public class RegistrationService {
           null,
           String.format(CONFIRMATION_URL, generatedToken)
       );
-    } catch (MessagingException e) {
+    } catch (javax.mail.MessagingException e) {
       e.printStackTrace();
     }
 
@@ -101,7 +101,7 @@ public class RegistrationService {
             null,
             String.format(CONFIRMATION_URL, generatedToken)
         );
-      } catch (MessagingException e) {
+      } catch (javax.mail.MessagingException e) {
         e.printStackTrace();
       }
       return "Token expired, a new token has been sent to your email";

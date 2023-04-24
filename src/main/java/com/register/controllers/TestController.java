@@ -1,4 +1,4 @@
-package com.ms4.register.controllers;
+package com.register.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

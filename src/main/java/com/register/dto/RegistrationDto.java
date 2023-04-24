@@ -1,4 +1,4 @@
-package com.ms4.register.dto;
+package com.register.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

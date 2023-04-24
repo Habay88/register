@@ -1,7 +1,7 @@
-package com.ms4.register.controllers;
+package com.register.controllers;
 
-import com.ms4.register.dto.RegistrationDto;
-import com.ms4.register.services.RegistrationService;
+import com.register.dto.RegistrationDto;
+import com.register.services.RegistrationService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

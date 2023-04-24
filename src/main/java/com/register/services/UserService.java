@@ -1,4 +1,4 @@
-package com.ms4.register.services;
+package com.register.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.ms4.register.repositories.UserRepository;
+import com.register.repositories.UserRepository;
 
 @Service
 @RequiredArgsConstructor
