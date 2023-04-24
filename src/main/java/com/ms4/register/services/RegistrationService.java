@@ -7,10 +7,11 @@ import com.ms4.register.models.UserRole;
 import com.ms4.register.repositories.TokenRepository;
 import com.ms4.register.repositories.UserRepository;
 
+import jakarta.mail.MessagingException;
+import jakarta.transaction.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
-import javax.mail.MessagingException;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
